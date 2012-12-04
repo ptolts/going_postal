@@ -144,7 +144,7 @@ module GoingPostal
   def format_fr_postcode(string)
     out_code = string.to_s.upcase.delete(" \t\r\n")
     if out_code =~ /^([0-9]{5})$/
-      return outcode
+      return out_code
     end
   end
   #same as germany
@@ -155,7 +155,7 @@ module GoingPostal
   def format_in_postcode(string)
     out_code = string.to_s.upcase.delete(" \t\r\n")
     if out_code =~ /^([0-9]{6})$/
-      return outcode
+      return out_code
     end
   end
   
