@@ -140,6 +140,24 @@ module GoingPostal
   def format_ie_postcode(string)
     nil
   end
+
+  def format_fr_postcode(string)
+    out_code = string.to_s.upcase.delete(" \t\r\n")
+    if out_code =~ /^([0-9]{5})$/
+      return outcode
+    end
+  end
+  #same as germany
+  alias format_de_postcode format_fr_postcode
+  #same as italian
+  alias format_it_postcode format_fr_postcode
+
+  def format_in_postcode(string)
+    out_code = string.to_s.upcase.delete(" \t\r\n")
+    if out_code =~ /^([0-9]{6})$/
+      return outcode
+    end
+  end
   
   def format_gb_postcode(string)
     out_code = string.to_s.upcase.delete(" \t\r\n")
