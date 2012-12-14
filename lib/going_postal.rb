@@ -161,10 +161,8 @@ module GoingPostal
   
   def format_gb_postcode(string)
     out_code = string.to_s.upcase.delete(" \t\r\n")
-    in_code = out_code.slice!(-3, 3)
-    if out_code =~ /^[A-Z]{1,2}([1-9][0-9A-HJKMNPR-Y]?|0[A-HJKMNPR-Y]?)$/ &&
-      in_code =~ /^[0-9][A-HJLNP-Z]{2}$/
-      [out_code, in_code].join(" ")
+    if out_code =~ /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {0,1}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/ &&
+      return out_code
     end
   end
   alias format_uk_postcode format_gb_postcode
