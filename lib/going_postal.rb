@@ -142,7 +142,7 @@ module GoingPostal
   end
 
   def format_fr_postcode(string)
-    out_code = string.to_s.upcase.delete(" \t\r\n")
+    out_code = string.to_s.upcase.strip
     if out_code =~ /^([0-9]{5})$/
       return out_code
     end
@@ -153,14 +153,14 @@ module GoingPostal
   alias format_it_postcode format_fr_postcode
 
   def format_in_postcode(string)
-    out_code = string.to_s.upcase.delete(" \t\r\n")
+    out_code = string.to_s.upcase.strip
     if out_code =~ /^([0-9]{6})$/
       return out_code
     end
   end
   
   def format_gb_postcode(string)
-    out_code = string.to_s.upcase.delete(" \t\r\n")
+    out_code = string.to_s.upcase.strip
     if out_code =~ /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {0,1}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/
       return out_code
     end
@@ -168,7 +168,7 @@ module GoingPostal
   alias format_uk_postcode format_gb_postcode
   
   def format_ca_postcode(string)
-    forward_sort_area = string.to_s.upcase.delete(" \t\r\n")
+    forward_sort_area = string.to_s.upcase.strip
     local_delivery_unit = forward_sort_area.slice!(-3, 3)
     if forward_sort_area =~ /^[A-CEGHJK-NPR-TVXY][0-9][A-CEGHJK-NPR-TV-Z]$/ &&
       local_delivery_unit =~ /[0-9][A-CEGHJK-NPR-TV-Z][0-9]/
@@ -177,7 +177,7 @@ module GoingPostal
   end
   
   def format_au_postcode(string)
-    string = string.to_s.delete(" \t\r\n")
+    string = string.to_s.strip
     string if string =~ /^[0-9]{4}$/
   end
   alias format_nz_postcode format_au_postcode
@@ -194,7 +194,7 @@ module GoingPostal
   alias format_us_postcode format_us_zipcode
   
   def format_ch_postcode(string)
-    string = string.to_s.delete(" \t\r\n")
+    string = string.to_s.strip
     string if string =~ /^[1-9][0-9]{3}$/
   end
   
