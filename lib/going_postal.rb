@@ -128,7 +128,7 @@ module GoingPostal
   def format_postcode(*args)
     string, country_code = get_args_for_format_postcode(args)
     method = :"format_#{country_code.to_s.downcase}_postcode"
-    respond_to?(method) ? __send__(method, string) : string.to_s.strip
+    respond_to?(method) ? __send__(method, string) : false
   end
   alias format_post_code format_postcode
   alias format_zip format_postcode
@@ -139,6 +139,13 @@ module GoingPostal
   
   def format_ie_postcode(string)
     nil
+  end
+
+  def format_cz_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[0-9]{3}\s?[0-9]{2}\b/
+      return out_code
+    end
   end
 
   def format_fr_postcode(string)
