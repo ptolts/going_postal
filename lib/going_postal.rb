@@ -141,12 +141,21 @@ module GoingPostal
     nil
   end
 
+  #Czech
   def format_cz_postcode(string)
     out_code = string.to_s.upcase.strip
     if out_code =~ /\b[0-9]{3}\s?[0-9]{2}\b/
       return out_code
     end
   end
+
+  #Denmark
+  def format_dk_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b^(DK(-| )?)?[0-9]{4}$\b/
+      return out_code
+    end
+  end  
 
   def format_fr_postcode(string)
     out_code = string.to_s.upcase.strip
