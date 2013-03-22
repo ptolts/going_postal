@@ -157,6 +157,14 @@ module GoingPostal
     end
   end  
 
+  #Netherlands
+  def format_nl_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b^[1-9][0-9]{3}\s?[a-zA-Z]{2}$\b/
+      return out_code
+    end
+  end    
+
   def format_fr_postcode(string)
     out_code = string.to_s.upcase.strip
     if out_code =~ /^([0-9]{5})$/
