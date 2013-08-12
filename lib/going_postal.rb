@@ -184,7 +184,7 @@ module GoingPostal
   #Portugal
   def format_pt_postcode(string)
     out_code = string.to_s.upcase.strip
-    if out_code =~ /\b[0-9]{4}\b/
+    if out_code =~ /\b[0-9]{4}(\s|\-)[0-9]{3}\b/
       return out_code
     end
   end     
