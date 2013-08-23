@@ -157,14 +157,6 @@ module GoingPostal
     end
   end
 
-  #Croatia
-  def format_hr_postcode(string)
-    out_code = string.to_s.upcase.strip
-    if out_code =~ /\b[0-9]{5}\b/
-      return out_code
-    end
-  end
-
   #Denmark
   def format_dk_postcode(string)
     out_code = string.to_s.upcase.strip
@@ -187,7 +179,53 @@ module GoingPostal
     if out_code =~ /\b[0-9]{4}(\s|\-)[0-9]{3}\b/
       return out_code
     end
-  end     
+  end    
+
+  #Azerbaijan
+  def format_az_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[A-Z]{2}(\s|\-|)[0-9]{4}\b/
+      return out_code
+    end
+  end 
+
+  #Singapore
+  def format_sg_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[0-9]{6}\b/
+      return out_code
+    end
+  end    
+  #same as Romania
+  alias format_ro_postcode format_sg_postcode
+
+  #Lithuania
+  def format_lt_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[A-Z]{2}(\s|\-|)[0-9]{5}\b/
+      return out_code
+    end
+    if out_code =~ /\b[0-9]{5}\b/
+      return out_code
+    end    
+  end  
+
+   
+  #Brazil
+  def format_br_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[0-9]{5}\s?[0-9]{3}\b/
+      return out_code
+    end
+  end   
+   
+  #Slovakia
+  def format_sk_postcode(string)
+    out_code = string.to_s.upcase.strip
+    if out_code =~ /\b[0-9]{3}\s?[0-9]{2}\b/
+      return out_code
+    end
+  end 
 
   #Netherlands
   def format_nl_postcode(string)
@@ -207,6 +245,14 @@ module GoingPostal
   alias format_de_postcode format_fr_postcode
   #same as italian
   alias format_it_postcode format_fr_postcode
+  #same as serbia
+  alias format_rs_postcode format_fr_postcode
+  #same as estonia
+  alias format_ee_postcode format_fr_postcode  
+  #same as croatia
+  alias format_hr_postcode format_fr_postcode  
+  #same as turkey
+  alias format_tr_postcode format_fr_postcode  
 
   def format_in_postcode(string)
     out_code = string.to_s.upcase.strip
@@ -232,12 +278,19 @@ module GoingPostal
     end
   end
   
+  #Australia
   def format_au_postcode(string)
     string = string.to_s.strip
     string if string =~ /\b[0-9]{4}\b/
   end
+  #New Zealand
   alias format_nz_postcode format_au_postcode
+  #South Africa
   alias format_za_postcode format_au_postcode
+  #Norway
+  alias format_no_postcode format_au_postcode 
+  #Denmark
+  alias format_dk_postcode format_au_postcode  
   
   def format_us_zipcode(string)
     zip = string.to_s.delete("- \t\r\n")
@@ -247,7 +300,6 @@ module GoingPostal
       [zip, plus_four].compact.join("-")
     end
   end
-  alias format_us_postcode format_us_zipcode
   alias format_mx_postcode format_us_zipcode
   
   def format_ch_postcode(string)
